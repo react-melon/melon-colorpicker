@@ -1,0 +1,36 @@
+{
+    "name": "melon-colorpicker",
+    "description": "Melon Color Picker",
+    "main": [
+        "lib/index.js",
+        "lib/index.styl"
+    ],
+    "authors": [
+        "jingyuanZhang <zhangjingyuan1108@outlook.com>",
+        "leon <ludafa@outlook.com>"
+    ],
+    "license": "MIT",
+    "keywords": [
+        "react",
+        "melon",
+        "color",
+        "picker",
+        "color-picker"
+    ],
+    "homepage": "https://github.com/react-melon/melon-colorpicker",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "**/*.log",
+        ".DS_Store",
+        "test",
+        "tests",
+        "src",
+        "example"
+    ],
+    "dependencies": {
+        "melon": "^0.3.4",
+        "melon-core": "^0.3.2"
+    }
+}
