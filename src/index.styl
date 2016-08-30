@@ -1,0 +1,109 @@
+/**
+ * @author jingyuanZhang<zhangjingyuan1108@outlook.com>
+ */
+
+@require 'melon/css/base.styl'
+@require 'melon/css/Icon.styl'
+@require 'melon/css/Button.styl'
+
+.{$-melon-class-prefix}-color-picker
+
+    &-label-placeholder
+        color: #999
+        cursor: pointer
+
+    &-picker
+        position: absolute
+        top: 100px
+        left: 100px
+        width: 240px
+        height: 280px
+        box-shadow: rgba(0, 0, 0, 0.3) 0 0 2px, rgba(0, 0, 0, 0.3) 0 4px 8px
+        background-color: #fff
+        display: none
+        z-index: 200
+
+    &-saturation
+        position: absolute
+        top: 0
+        left: 0
+        width: 240px
+        height: 150px
+
+    &-white
+        width: 240px
+        height: 150px
+        background: linear-gradient(to right, #FFF, rgba(255, 255, 255, 0))
+
+    &-black
+        width: 240px
+        height: 150px
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
+
+    &-hue
+        width: 240px
+        height: 16px
+        position: absolute
+        left: 0
+        top: 160px
+        background: linear-gradient(to right, #F00 0, #FF0 40px, #0F0 80px, #0FF 120px, #00F 160px, #F0F 200px, #F00 100%)
+
+    &-rgbstr
+        position: absolute;
+        top: 186px;
+        left: 60px;
+        width: 70px;
+        padding-left: 6px;
+        height: 20px;
+        border: none;
+        font-size: 16px;
+        box-shadow: #CCC 0 0 0 1px inset;
+
+        &:focus
+            outline: none
+
+    &-label
+        position: absolute;
+        top: 186px;
+        left: 20px;
+        width: 30px;
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+
+    &-result
+        position: absolute;
+        top: 186px;
+        left: 150px;
+        width: 30px;
+        height: 20px;
+        box-shadow: #CCC 0 0 0 1px inset;
+
+    &-submit
+        position: absolute;
+        top: 186px;
+        left: 190px;
+        width: 40px;
+        height: 20px;
+        box-shadow: #CCC 0 0 0 1px inset;
+        font-size: 14px;
+        line-height: 20px;
+        color: #888;
+        cursor: pointer;
+        text-align: center;
+
+    &-boxes
+        position: absolute;
+        top: 206px;
+        width: 100%;
+        height: 50px;
+
+    &-box
+        display: inline-block
+        width: 20px
+        height: 20px
+        margin-left: 12px
+        margin-top: 10px
+        box-shadow: #CCC 0 0 0 1px inset
+        border-radius: 3px
