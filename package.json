@@ -32,7 +32,6 @@
         "melon-core": "^0.3.2"
     },
     "devDependencies": {
-        "babel-plugin-transform-runtime": "^6.12.0",
         "babel-loader": "^6.2.5",
         "babel-plugin-external-helpers": "^6.8.0",
         "babel-plugin-external-helpers-insert-require": "^1.0.0",
