@@ -28,7 +28,8 @@
         "test",
         "tests",
         "src",
-        "example"
+        "example",
+        "tools"
     ],
     "dependencies": {
         "melon": "^0.3.4",
