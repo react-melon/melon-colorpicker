@@ -17,6 +17,7 @@
         "picker",
         "color-picker"
     ],
+    "moduleTypes": "umd",
     "homepage": "https://github.com/react-melon/melon-colorpicker",
     "ignore": [
         "**/.*",
