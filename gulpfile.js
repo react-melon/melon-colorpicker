@@ -9,12 +9,19 @@ const clean = require('gulp-clean');
 const babelOptions = require('./package.json').babelBuild || {};
 const babelHelpers = require('gulp-babel-external-helpers');
 
-gulp.task('build', function () {
+gulp.task('babel', function () {
     return gulp.src('src/**/*.js')
         .pipe(babel(babelOptions))
         .pipe(babelHelpers('babelHelpers.js', 'umd'))
         .pipe(gulp.dest('lib'));
+
 });
+
+gulp.task('stylus', function () {
+    return gulp.src('src/**/*.styl').pipe(gulp.dest('lib'));
+});
+
+gulp.task('build', ['babel', 'stylus']);
 
 gulp.task('clean', function () {
     return gulp
