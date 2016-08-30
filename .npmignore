@@ -1,2 +1,6 @@
 example
 src
+*.log
+gulpfile.js
+tools
+node_modules
