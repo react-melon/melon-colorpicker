@@ -33,5 +33,6 @@
     "dependencies": {
         "melon": "^0.3.4",
         "melon-core": "^0.3.2"
-    }
+    },
+    "version": "1.0.3"
 }
