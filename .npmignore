@@ -5,3 +5,5 @@ gulpfile.js
 tools
 node_modules
 test
+docs
+esdoc.json
