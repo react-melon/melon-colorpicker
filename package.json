@@ -11,7 +11,7 @@
     "prepublish": "npm run lint && npm run rebuild",
     "test": "NODE_ENV=test karma start ./test/karma.local.conf.js",
     "test-ci": "NODE_ENV=test karma start ./test/karma.travis.conf.js",
-    "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat test/coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
