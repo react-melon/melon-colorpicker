@@ -3,7 +3,7 @@
 * @author leon <ludafa@outlook.com>
 */
 
-const karmaConfig = require('./karma/config');
+const karmaConfig = require('./karma.conf.js');
 
 module.exports = function (config) {
 
