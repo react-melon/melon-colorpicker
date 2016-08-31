@@ -27,7 +27,7 @@ ReactDOM.render(
 
 ### webpack
 
-1. please check out [this]() first.
+1. please check out [this](https://github.com/react-melon/melon#如何在-webpack-中使用-melon) first.
 
 2. `npm install -S melon-colorpicker`
 
