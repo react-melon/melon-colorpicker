@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+    - 6
+install:
+    npm install --registry http://registry.npmjs.org
+    npm install --save-dev karma-phantomjs-launcher
+script:
+    - npm run test-ci
+after_script:
+    - npm run coveralls

@@ -4,3 +4,4 @@ src
 gulpfile.js
 tools
 node_modules
+test
