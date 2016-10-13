@@ -56,8 +56,7 @@ export default class ColorPicker extends InputComponent {
      */
     onClickAway(e) {
         let open = this.state.open;
-        // alert(dom.contains(this.refs.picker, e.target));
-        if (open && !dom.contains(this.refs.picker, e.target)) {
+        if (open && !dom.contains(this.refs.main, e.target)) {
             this.setState({open: false}, () => {
                 dom.off(document, 'click', this.onClickAway);
             });
@@ -72,9 +71,7 @@ export default class ColorPicker extends InputComponent {
     onLabelClick(e) {
         let open = this.state.open;
         this.setState({
-            open: !open,
-            top: e.pageY + 20,
-            left: e.pageX + 20
+            open: !open
         }, () => {
             dom.on(document, 'click', this.onClickAway);
         });
@@ -121,10 +118,10 @@ export default class ColorPicker extends InputComponent {
      */
     onHueChange(e) {
 
-        const {top, left} = this.state;
+        const {top, left} = this.refs.hue.getBoundingClientRect();
 
         let huel = e.pageX - left;
-        let huet = e.pageY - top - 160;
+        let huet = e.pageY - top;
         let red = 0;
         let green = 0;
         let blue = 0;
@@ -176,6 +173,8 @@ export default class ColorPicker extends InputComponent {
 
             const colorHEX = `${util.toHex(red)}${util.toHex(green)}${util.toHex(blue)}`;
 
+            console.log(colorHEX);
+
             this.setState({
                 color: colorHEX,
                 satValue: colorHEX
@@ -224,7 +223,10 @@ export default class ColorPicker extends InputComponent {
      * @param {Event} e 事件
      */
     onSaturationChange(e) {
-        const {top, left, satValue} = this.state;
+
+        const {top, left} = this.refs.saturation.getBoundingClientRect();
+        const satValue = this.state.satValue;
+
         let satl = e.pageX - left;
         let satt = e.pageY - top;
 
@@ -282,8 +284,6 @@ export default class ColorPicker extends InputComponent {
         const {
             satValue,
             open,
-            top,
-            left,
             color,
             value,
             error
@@ -295,60 +295,69 @@ export default class ColorPicker extends InputComponent {
         } = this.props;
 
         return (
-            <div ref="picker" className={cx(this.props).build()}>
-                <label onClick={this.onLabelClick}>
-                        <span className={cx.getPartClassName('label-placeholder')}>
+            <div ref="main" className={cx(this.props).build()}>
+                <label
+                    className={cx.getPartClassName('label')}
+                    onClick={this.onLabelClick}>
+                        <span
+                            className={cx.getPartClassName('placeholder')}
+                            style={{color: value ? '#333' : ''}}>
                             {value ? value : placeholder}
                         </span>
                     <Icon icon='expand-more'/>
                 </label>
                 <div
-                    className={cx.getPartClassName('picker')}
+                    className={cx.getPartClassName('popup')}
                     style={{
-                        display: open ? 'block' : 'none',
-                        top: top,
-                        left: left
-                    }}
-                    onClick={this.onSaturationChange}>
-                    <div className={cx.getPartClassName('saturation')}
+                        display: open ? 'block' : 'none'
+                    }}>
+                    <div
+                        ref="saturation"
+                        className={cx.getPartClassName('saturation')}
                         style={{
                             backgroundColor: '#' + satValue
-                        }}>
+                        }}
+                        onClick={this.onSaturationChange}>
                         <div className={cx.getPartClassName('white')}>
                             <div className={cx.getPartClassName('black')}></div>
                         </div>
                     </div>
-                    <div className={cx.getPartClassName('hue')} onClick={this.onHueChange}></div>
-                    <span className={cx.getPartClassName('label')}>Hex</span>
-                    <input
-                        className={cx.getPartClassName('rgbstr')}
-                        type="text"
-                        onBlur={() => {
-                            this.setState({
-                                error: this.isRawInputError(color)
-                            });
-                        }}
-                        ref="rgbStr"
-                        placeholder={placeholder}
-                        value={color}
-                        onChange={this.onHexChange}
-                        style={{
-                            border: error ? '1px red solid' : null
-                        }}/>
                     <div
-                        className={cx.getPartClassName('result')}
-                        style={{
-                            backgroundColor: '#' + color
-                        }}>
+                        ref="hue"
+                        className={cx.getPartClassName('hue')}
+                        onClick={this.onHueChange} />
+                    <div className={cx.getPartClassName('input-box')}>
+                        <span>Hex</span>
+                        <input
+                            className={cx.getPartClassName('rgbstr')}
+                            type="text"
+                            onBlur={() => {
+                                this.setState({
+                                    error: this.isRawInputError(color)
+                                });
+                            }}
+                            ref="rgbStr"
+                            placeholder={placeholder}
+                            value={color}
+                            onChange={this.onHexChange}
+                            style={{
+                                border: error ? '1px red solid' : null
+                            }}/>
+                        <div
+                            className={cx.getPartClassName('result')}
+                            style={{
+                                backgroundColor: '#' + color
+                            }}>
+                        </div>
+                        <Button
+                            label="OK"
+                            key="submit"
+                            size="xxs"
+                            type="button"
+                            variants={['secondery']}
+                            className={cx.getPartClassName('submit')}
+                            onClick={this.onSubmit}/>
                     </div>
-                    <Button
-                        label="OK"
-                        key="submit"
-                        size="xxs"
-                        type="button"
-                        variants={['secondery']}
-                        className={cx.getPartClassName('submit')}
-                        onClick={this.onSubmit}/>
                     {this.renderBoxes(boxes)}
                 </div>
             </div>
