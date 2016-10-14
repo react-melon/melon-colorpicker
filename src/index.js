@@ -5,7 +5,7 @@
  */
 
 import React, {PropTypes} from 'react';
-
+import Validity from 'melon-core/Validity';
 import InputComponent from 'melon-core/InputComponent';
 import {create} from 'melon-core/classname/cxBuilder';
 
@@ -173,8 +173,6 @@ export default class ColorPicker extends InputComponent {
 
             const colorHEX = `${util.toHex(red)}${util.toHex(green)}${util.toHex(blue)}`;
 
-            console.log(colorHEX);
-
             this.setState({
                 color: colorHEX,
                 satValue: colorHEX
@@ -306,6 +304,7 @@ export default class ColorPicker extends InputComponent {
                         </span>
                     <Icon icon='expand-more'/>
                 </label>
+                <Validity validity={this.state.validity} />
                 <div
                     className={cx.getPartClassName('popup')}
                     style={{
