@@ -5,13 +5,14 @@
 
 const path = require('path');
 const babelOptions = require('../package.json').babel;
-const istanbul = require('babel-istanbul');
+
+babelOptions.plugins.push('istanbul');
 
 module.exports = {
 
     basePath: path.join(__dirname, '../'),
 
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine'],
 
     files: [
         'test/spec/**/*.spec.js'
@@ -23,27 +24,39 @@ module.exports = {
     ],
 
     preprocessors: {
-        'src/**/*.js': ['browserify', 'coverage'],
-        'test/**/*.js': ['browserify']
+        'src/**/*.js': ['coverage'],
+        'test/**/*.js': ['webpack']
     },
 
-    browserify: {
-        debug: true,
-        paths: ['./src/*.js', './test/**/**.spec.js'],
-
-        transform: [
-
-            ['babelify', babelOptions],
-
-            ['browserify-istanbul', {
-                instrumenter: istanbul,
-                instrumenterConfig: {
-                    babel: babelOptions
+    webpack: {
+        module: {
+            preLoaders: [
+                {
+                    test: /\.js$/,
+                    loader: 'babel',
+                    exclude: /node_modules/,
+                    query: babelOptions
                 }
-            }]
-        ],
-        extensions: ['.js']
+            ],
+            loaders: [
+                {
+                    test: /\.json$/,
+                    loader: 'json'
+                }
+            ]
+        },
+        devtool: 'inline-source-map',
+        externals: {
+            'react/lib/ExecutionEnvironment': true,
+            'react/lib/ReactContext': true,
+            'react/addons': true
+        }
     },
+
+    webpackMiddleware: {
+        stats: 'errors-only'
+    },
+
 
     autoWatch: true,
 
