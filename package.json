@@ -1,6 +1,6 @@
 {
   "name": "melon-colorpicker",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Melon Color Picker",
   "main": "lib/index.js",
   "scripts": {
@@ -32,8 +32,8 @@
   },
   "homepage": "https://github.com/react-melon/melon-colorpicker#readme",
   "dependencies": {
-    "melon": "^0.3.4",
-    "melon-core": "^0.3.2"
+    "melon": "^0.4.0",
+    "melon-core": "^0.4.1"
   },
   "devDependencies": {
     "babel-istanbul": "^0.11.0",

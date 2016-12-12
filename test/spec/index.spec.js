@@ -4,8 +4,7 @@
   * @author jingyuanZhang<zhangjingyuan1108@outlook.com>
  */
 
-import TestUtils, {createRenderer} from 'react-addons-test-utils';
-import {shallow, mount} from 'enzyme';
+import {mount} from 'enzyme';
 import React from 'react';
 
 import ColorPicker from '../../src/index';
