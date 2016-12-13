@@ -24,7 +24,7 @@ const config = {
             },
             // 处理 iconfont
             {
-                test: /\.(svg|eot|ttf|woff)($|\?)/,
+                test: /\.(svg|eot|ttf|woff|woff2)($|\?)/,
                 loader: 'file'
             }
         ]
