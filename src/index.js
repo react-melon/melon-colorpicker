@@ -194,8 +194,6 @@ export default class ColorPicker extends InputComponent {
                     green = 0;                                      // 区域5g值（green）一直保持不变，都是255
                     blue = Math.round(255 * (1 - yushu / 40));      // 区域5b值（blue）在 255 ~ 0间，根据点击的相对位置获取b值
                     break;
-                default:
-                    break;
             }
             // util.toHex函数将r、g、b值转化为16进制，（xxx, yyy, zzz）-> xxyyzz
             const colorHEX = `${util.toHex(red)}${util.toHex(green)}${util.toHex(blue)}`;
@@ -230,18 +228,20 @@ export default class ColorPicker extends InputComponent {
      *
      * @protected
      * @param {Object} e 颜色输入框内值发生改变时的事件
+     * @return {boolean} 颜色改变是否成功
      */
     onHexChange(e) {
         // 获取当前输入框值
         let rgb = e.target.value;
         // 用户输入超过6个字符时，不显示后续输入并返回
         if (rgb.length > 6) {
-            return;
+            return false;
         }
         // 判断用户输入值是否符合规则（16进制），如有非法字符，则替换为''
         rgb = rgb.replace(/[^0-9a-fA-F]/gi, '');
         // 将结果赋给选色器的颜色值，并在颜色展示区显示该颜色
         this.setState({color: rgb.toUpperCase()});
+        return true;
     }
 
     /**
