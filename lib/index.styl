@@ -1,0 +1,104 @@
+/**
+ * @author jingyuanZhang<zhangjingyuan1108@outlook.com>
+ */
+
+@require 'nib'
+@require 'melon/css/base.styl'
+@require 'melon/css/Icon.styl'
+@require 'melon/css/Button.styl'
+
+.{$-melon-class-prefix}-color-picker
+    position: relative;
+    display: inline-block;
+    min-width: 5em;
+    border-bottom: 1px solid $-melon-colors.grey300
+    padding: 0.5em 0;
+    height: 1em;
+    line-height: 1em;
+
+    &-label
+        display: block;
+        padding-right: 1em;
+        font-family: monospace;
+        clearfix();
+
+        >.ui-icon
+            float: left
+            margin-right: -1em
+
+    &-placeholder
+        float: left
+        display: block;
+        width: 100%;
+        color: #999
+        cursor: pointer
+
+    &-popup
+        position: absolute
+        top: 100%
+        left: 0
+        width: 240px
+        height: 280px
+        box-shadow: rgba(0, 0, 0, 0.3) 0 0 2px, rgba(0, 0, 0, 0.3) 0 4px 8px
+        background-color: #fff
+        display: none
+        z-index: 200
+
+    &-saturation
+        height: 150px
+
+    &-white
+        height: 100%
+        background: linear-gradient(to right, #FFF, rgba(255, 255, 255, 0))
+
+    &-black
+        height: 100%
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
+
+    &-hue
+        height: 16px
+        margin-top: 10px
+        background: linear-gradient(to right, #F00 0, #FF0 40px, #0F0 80px, #0FF 120px, #00F 160px, #F0F 200px, #F00 100%)
+
+    &-input-box
+        margin-top: 10px;
+        height: 24px;
+        padding: 0 12px;
+        clearfix();
+
+        >*
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px
+
+            &:first-child
+                margin-left: 0
+
+
+        >span
+            line-height: 24px
+
+    &-rgbstr
+        box-sizing: content-box;
+        height: 16px
+        width: 80px;
+        font-size: 14px;
+        line-height: 16px;
+        padding: 2px 0;
+        font-family: monospace;
+        text-align: center
+
+    &-result
+        width: 28px;
+        height: 22px;
+        border: 1px solid #eee;
+        border-radius: 3px
+
+    &-box
+        display: inline-block
+        width: 18px
+        height: 18px
+        margin-left: 12px
+        margin-top: 10px
+        border: 1px #eee solid;
+        border-radius: 3px
