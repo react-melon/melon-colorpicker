@@ -5,7 +5,6 @@
  */
 
 import React, {PropTypes} from 'react';
-import Validity from 'melon-core/Validity';
 import InputComponent from 'melon-core/InputComponent';
 import {create} from 'melon-core/classname/cxBuilder';
 
@@ -312,7 +311,6 @@ export default class ColorPicker extends InputComponent {
      * @return {React.Element}
      */
     renderBoxes(boxes) {
-
         return (
             <div className={cx.getPartClassName('boxes')}>
                 {boxes.map(item => this.renderBox(item))}
@@ -338,11 +336,19 @@ export default class ColorPicker extends InputComponent {
 
         const {
             placeholder,    // 用户可定义的选色器标签提示文字，'请选择'等提示语
-            boxes           // 用户可定义的常用颜色样例
+            boxes,          // 用户可定义的常用颜色样例
+            variants,
+            states,
+            size
         } = this.props;
 
+        const className = cx(this.props)
+            .addVariants(variants)
+            .addStates(states)
+            .build();
+
         return (
-            <div ref="main" className={cx(this.props).build()}>
+            <div ref="main" className={className}>
                 <label
                     className={cx.getPartClassName('label')}
                     onClick={this.onLabelClick}>
@@ -351,9 +357,8 @@ export default class ColorPicker extends InputComponent {
                             style={{color: value ? '#333' : ''}}>
                             {value ? value : placeholder}
                         </span>
-                    <Icon icon='expand-more'/>
+                    <Icon icon='expand-more' size={size} />
                 </label>
-                <Validity validity={this.state.validity} />
                 <div
                     className={cx.getPartClassName('popup')}
                     style={{

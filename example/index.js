@@ -41,6 +41,8 @@ class App extends Component {
                         name = "rgbStr"
                         placeholder = "请选择"
                         value={color}
+                        variants={['fluid']}
+                        size="xxs"
                         onChange={e => {
                             this.setState({color: e.value});
                         }} />

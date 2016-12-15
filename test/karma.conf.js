@@ -4,9 +4,6 @@
  */
 
 const path = require('path');
-const babelOptions = require('../package.json').babel;
-
-babelOptions.plugins.push('istanbul');
 
 module.exports = {
 
@@ -34,8 +31,7 @@ module.exports = {
                 {
                     test: /\.js$/,
                     loader: 'babel',
-                    exclude: /node_modules/,
-                    query: babelOptions
+                    exclude: /node_modules/
                 }
             ],
             loaders: [
