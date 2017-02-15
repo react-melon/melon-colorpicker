@@ -1,6 +1,6 @@
 /**
  * @file ColorPicker
- * @author jingyuanZhang<zhangjingyuan1108@outlook.com zhangjingyuan02@baidu.com>
+ * @author jingyuanZhang<zhangjingyuan1108@outlook.com>
  * @author leon<ludafa@outlook.com>
  */
 
