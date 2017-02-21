@@ -51,8 +51,8 @@ check [this](https://doc.esdoc.org/github.com/react-melon/melon-colorpicker/) ou
 
 ## Run the example
 
-```sh
-git clone git@github.com:react-melon/melon-colorpicker.git
+```
+git clone https://github.com/react-melon/melon-colorpicker.git
 cd melon-colorpicker
 npm install
 npm start
