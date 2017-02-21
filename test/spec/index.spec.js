@@ -11,9 +11,9 @@ import ColorPicker from '../../src/index';
 describe('colorpicker functions test', function () {
     const colorpicker = mount(
         <ColorPicker
-        name = "rgbStr"
-        placeholder = "请选择"
-        value = "" />
+            name="rgbStr"
+            placeholder="请选择"
+            defaultValue="" />
     );
 
     it('isRawInputError can judge the input currectly', function () {
