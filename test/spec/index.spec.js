@@ -158,14 +158,8 @@ describe('colorpicker functions test', function () {
         });
 
         it('click other div', function () {
-            let ev = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-                target: '<div>test</div>'
-            });
             colorpicker.setState({open: true});
-            colorpicker.instance().onClickAway(ev);
+            colorpicker.instance().onClickAway({target: document.createElement('div')});
             expect(colorpicker.state('open')).toBeFalsy();
         });
 
