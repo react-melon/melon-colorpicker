@@ -10,7 +10,6 @@ import {create} from 'melon-core/classname/cxBuilder';
 
 import Icon  from 'melon/Icon';
 import Button from 'melon/Button';
-import dom from 'melon/common/util/dom';
 
 import * as util from './util';
 
@@ -55,7 +54,7 @@ export default class ColorPicker extends InputComponent {
      */
     componentWillUnmount() {
         // colorpicker销毁时给document解绑click事件onClickAway
-        dom.off(document, 'click', this.onClickAway);
+        document.addEventListener('click', this.onClickAway);
     }
 
     /**
@@ -68,9 +67,9 @@ export default class ColorPicker extends InputComponent {
 
         let open = this.state.open;
         // 当选色器已打开，且点击位置(e.target)没有点击在选色器上(this.refs.main)时，关闭选色器，并解绑点击事件onClickAway
-        if (open && !dom.contains(this.refs.main, e.target)) {
+        if (open && !this.refs.main.contains(e.target)) {
             this.setState({open: false}, () => {
-                dom.off(document, 'click', this.onClickAway);
+                document.removeEventListener('click', this.onClickAway);
             });
         }
     }
@@ -90,11 +89,11 @@ export default class ColorPicker extends InputComponent {
         }, () => {
             if (!open) {
                 // 当颜色选择器打开时，给document绑定事件
-                dom.on(document, 'click', this.onClickAway);
+                document.addEventListener('click', this.onClickAway);
             }
             else {
                 // 关闭颜色选择器后，解绑该事件
-                dom.off(document, 'click', this.onClickAway);
+                document.removeEventListener('click', this.onClickAway);
             }
         });
     }

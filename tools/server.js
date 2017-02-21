@@ -25,4 +25,4 @@ const server = new WebpackDevServer(compiler, {
     }
 });
 
-server.listen(process.env.NODE_ENV || 8080);
+server.listen(8080);
