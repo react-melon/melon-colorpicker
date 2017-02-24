@@ -6,8 +6,10 @@
 @require 'melon/css/base.styl'
 @require 'melon/css/Icon.styl'
 @require 'melon/css/Button.styl'
+@require 'melon-layer/lib/index.css'
 
 .{$-melon-class-prefix}-color-picker
+
     position: relative;
     display: inline-block;
     min-width: 5em;
@@ -18,34 +20,68 @@
 
     &-label
         display: block;
+        height: 1em;
         padding-right: 1em;
         font-family: monospace;
         clearfix();
 
         >.ui-icon
+            font-size: 1em
             float: left
             margin-right: -1em
 
+    &-value,
     &-placeholder
         float: left
         display: block;
         width: 100%;
-        color: #999
         cursor: pointer
+        color: #999
+
+    &-value-indicator
+        display: inline-block;
+        color: #666
+        width: 1em;
+        height: @width;
+        border: 1px solid rgba(170, 170, 170, .8);
+        vertical-align: middle;
+        margin-right: 0.5em
+        border-radius: 4px;
 
     &-popup
-        position: absolute
-        top: 100%
-        left: 0
-        width: 240px
-        height: 280px
+        width: 262px
+        height: 355px
+        padding: 8px
         box-shadow: rgba(0, 0, 0, 0.3) 0 0 2px, rgba(0, 0, 0, 0.3) 0 4px 8px
+        border-radius: 3px
         background-color: #fff
-        display: none
         z-index: 200
+        transform-origin: top left
+
+
+    &-selector-panel
+        clearfix()
 
     &-saturation
-        height: 150px
+        float: left
+        position: relative
+        height: 210px
+        width: 210px
+
+    &-sv-anchor
+        position: absolute
+        top: 0;
+        left: 0
+        width: 8px
+        height: @width
+        border-width: 2px;
+        margin-top: -(@width / 2 + @border-width)px
+        margin-left: -(@width / 2 + @border-width)px
+        border-radius: 50%
+        border-style: solid
+        border-color: rgba(#fff, 0.8)
+        background-color: transparent
+        transition: transform .25s ease-out
 
     &-white
         height: 100%
@@ -56,49 +92,119 @@
         background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
 
     &-hue
-        height: 16px
-        margin-top: 10px
-        background: linear-gradient(to right, #F00 0, #FF0 40px, #0F0 80px, #0FF 120px, #00F 160px, #F0F 200px, #F00 100%)
+        float: left;
+        position: relative;
+        width: 16px;
+        height: 210px;
+        margin-left: 10px
+        background: linear-gradient(
+            180deg,
+            #F00 0,
+            #FF0 16.666666667%,
+            #0F0 33.333333334%,
+            #0FF 50%,
+            #00F 66.666666667%,
+            #F0F 83.333333333%,
+            #F00 100%
+        )
 
-    &-input-box
-        margin-top: 10px;
-        height: 24px;
-        padding: 0 12px;
+        &-anchor
+            position: absolute;
+            left: 2px
+            top: 0
+            width: 8px
+            height: @width
+            border-width: 2px;
+            margin-top: -(@width / 2 + @border-width)px
+            border-radius: 50%
+            border-style: solid
+            border-color: rgba(#fff, 0.8)
+            background-color: transparent
+            transition: transform .25s ease-out
+
+    &-alpha
+        float: left
+        margin-left 10px
+        height: 210px
+        width: 15px
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpiPHPmDAMMGBsbw9lMDDgA6RKM%2F%2F%2F%2Fh3POnj1LCzsAAgwAQtYIcFfEyzkAAAAASUVORK5CYII%3D')
+
+        &-foreground
+            height: 100%
+            position: relative;
+
+        &-anchor
+            position: absolute;
+            left: 2px
+            top: 0
+            width: 8px
+            height: @width
+            border-width: 2px;
+            margin-top: -(@width / 2 + @border-width)px
+            border-radius: 50%
+            border-style: solid
+            border-color: rgba(#fff, 0.8)
+            background-color: transparent
+            transition: transform .25s ease-out
+
+    &-input-panel
+        margin-top: 10px
         clearfix();
 
-        >*
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 10px
+    &-input-box
+        float: left
+        margin-left: 6px
+        margin-bottom: 6px
 
-            &:first-child
-                margin-left: 0
+        &:first-child
+            margin-left 0
 
-
-        >span
-            line-height: 24px
-
-    &-rgbstr
-        box-sizing: content-box;
-        height: 16px
-        width: 80px;
-        font-size: 14px;
-        line-height: 16px;
-        padding: 2px 0;
-        font-family: monospace;
+    &-input-hex,
+    &-input-r,
+    &-input-g,
+    &-input-b,
+    &-input-a
+        box-sizing: border-box;
+        width: 42px
+        height: 24px
+        font-size: 0.75em
         text-align: center
-
-    &-result
-        width: 28px;
-        height: 22px;
-        border: 1px solid #eee;
+        line-height: 1;
         border-radius: 3px
+        border: 1px solid #ddd
+        outline: none
+        transition: border-color .5s
+
+        &:focus
+            border-color: #aaa
+
+    &-input-hex
+        width: 69px
+
+    &-input-label
+        display: block;
+        text-align: center;
+        font-size: 12px
+        margin-top: 5px
+        color: #666
+
+    &-button-panel
+        clearfix();
+        margin-top: 10px
+
+    &-box-panel
+        display: flex
+        flex-flow: row wrap;
+        justify-content: space-around;
+        margin-top: 5px;
 
     &-box
-        display: inline-block
-        width: 18px
-        height: 18px
-        margin-left: 12px
-        margin-top: 10px
-        border: 1px #eee solid;
-        border-radius: 3px
+        width: 20px;
+        height: @width;
+        display: block;
+        border: 1px solid rgba(170, 170, 170, .8);
+        border-radius: 3px;
+        cursor: pointer;
+
+    &-submit
+        float: right

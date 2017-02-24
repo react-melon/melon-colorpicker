@@ -1,6 +1,6 @@
 {
   "name": "melon-colorpicker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Melon Color Picker",
   "main": "lib/index.js",
   "scripts": {
@@ -30,12 +30,17 @@
   },
   "homepage": "https://github.com/react-melon/melon-colorpicker#readme",
   "dependencies": {
-    "melon": "^0.5.0",
-    "melon-core": "^0.4.1"
+    "dom-align": "^1.5.3",
+    "kolor": "^1.1.9",
+    "melon": ">=0.5.0",
+    "melon-core": ">=0.4.1",
+    "melon-layer": ">=1.0.2",
+    "react-motion": "^0.4.7"
   },
   "devDependencies": {
     "babel-istanbul": "^0.11.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-istanbul": "^4.0.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.12.0",
     "babel-plugin-transform-es3-member-expression-literals": "^6.8.0",
     "babel-plugin-transform-es3-property-literals": "^6.8.0",
@@ -44,8 +49,6 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
     "babelify": "^7.3.0",
-    "browserify": "^13.1.0",
-    "browserify-istanbul": "^2.0.0",
     "coveralls": "^2.11.12",
     "css-loader": "^0.24.0",
     "enzyme": "^2.6.0",
@@ -54,12 +57,12 @@
     "fecs": "^0.8.6",
     "file-loader": "^0.9.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "jasmine": "^2.4.1",
     "jsdom": "^9.8.3",
     "json-loader": "^0.5.4",
     "karma": "^1.2.0",
     "karma-babel-preprocessor": "^6.0.1",
-    "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.0",
@@ -71,6 +74,7 @@
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
+    "rimraf": "^2.6.1",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",

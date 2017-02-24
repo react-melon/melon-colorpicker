@@ -20,7 +20,7 @@ const config = {
             // 处理 stylus
             {
                 test: /\.styl$/,
-                loader: 'style!css!stylus?paths=node_modules&resolve url'
+                loader: 'style!css!stylus?paths=node_modules&resolve url&include css'
             },
             // 处理 iconfont
             {
@@ -39,7 +39,7 @@ const config = {
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.css']
     },
     devtool: 'source-map',
     plugins: [

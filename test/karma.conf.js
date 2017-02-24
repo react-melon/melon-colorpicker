@@ -16,8 +16,8 @@ module.exports = {
     ],
 
     browsers: [
-        'Chrome',
-        'Firefox'
+        // 'Firefox',
+        'Chrome'
     ],
 
     preprocessors: {
@@ -27,19 +27,30 @@ module.exports = {
 
     webpack: {
         module: {
-            preLoaders: [
+            loaders: [
                 {
                     test: /\.js$/,
                     loader: 'babel',
                     exclude: /node_modules/
-                }
-            ],
-            loaders: [
+                },
                 {
                     test: /\.json$/,
                     loader: 'json'
+                },
+                // 处理 stylus
+                {
+                    test: /\.styl$/,
+                    loader: 'style!css!stylus?paths=node_modules&resolve url&include css'
+                },
+                // 处理 iconfont
+                {
+                    test: /\.(svg|eot|ttf|woff|woff2)($|\?)/,
+                    loader: 'file'
                 }
             ]
+        },
+        stylus: {
+            use: [require('nib')()]
         },
         devtool: 'inline-source-map',
         externals: {
