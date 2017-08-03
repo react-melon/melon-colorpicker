@@ -9,10 +9,11 @@ import InputComponent from 'melon-core/InputComponent';
 import {create} from 'melon-core/classname/cxBuilder';
 import {Motion, spring} from 'react-motion';
 import Layer from 'melon-layer';
-import Icon  from 'melon/Icon';
+import Icon from 'melon/Icon';
 import Button from 'melon/Button';
 import align from 'dom-align';
 import kolor from 'kolor';
+import DragPanel from './DragPanel';
 
 const cx = create('ColorPicker');
 
@@ -172,10 +173,8 @@ export default class ColorPicker extends InputComponent {
      */
     onHueChange(e) {
 
-        let {pageY, currentTarget} = e;
-
         this.setState({
-            h: (pageY - currentTarget.getBoundingClientRect().top) / HUE_HEIGHT * 360
+            h: e.y * 360
         });
 
     }
@@ -184,29 +183,16 @@ export default class ColorPicker extends InputComponent {
      * 当用户点击饱和度（saturation）区域时，输入框和颜色展示区显示相应颜色，
      *
      * @protected
-     * @param {Object} e 用户在饱和度区域的点击事件
+     * @param {number} e.x 用户在饱和度区域的点击事件
+     * @param {number} e.y 用户在饱和度区域的点击事件
      */
-    onSaturationChange(e) {
-
-        let {currentTarget, pageX, pageY} = e;
-
-        // 获取当前选色器里饱和度区域的位置
-        let {top, left} = currentTarget.getBoundingClientRect();
-
-        // 获取用户点击位置 left -> hsv.s
-        let s = (pageX - left) / SV_SIZE;
-
-        // 获取用户点击位置 top -> hsv.v
-        let v = 1 - (pageY - top) / SV_SIZE;
-
-        this.setState({s, v});
-
+    onSaturationChange({x, y}) {
+        this.setState({s: x, v: 1 - y});
     }
 
-    onAlphaChange(e) {
-        let {currentTarget, pageY} = e;
+    onAlphaChange({y}) {
         this.setState({
-            a: +((pageY - currentTarget.getBoundingClientRect().top) / HUE_HEIGHT).toFixed(2)
+            a: y.toFixed(2)
         });
     }
 
@@ -361,12 +347,10 @@ export default class ColorPicker extends InputComponent {
         return (
             <div>
                 <div className={cx.getPartClassName('selector-panel')}>
-                    <div
+                    <DragPanel
                         className={cx.getPartClassName('saturation')}
-                        style={{
-                            backgroundColor: kolor.hsv(h, 1, 1).rgb().css()
-                        }}
-                        onClick={this.onSaturationChange}>
+                        style={{backgroundColor: kolor.hsv(h, 1, 1).rgb().css()}}
+                        onPositionChange={this.onSaturationChange}>
                         <div className={cx.getPartClassName('white')}>
                             <div className={cx.getPartClassName('black')}></div>
                         </div>
@@ -375,30 +359,31 @@ export default class ColorPicker extends InputComponent {
                             style={{
                                 transform: `translate(${s * SV_SIZE}px, ${(1 - v) * SV_SIZE}px)`
                             }} />
-                    </div>
-                    <div
+                    </DragPanel>
+                    <DragPanel
                         className={cx.getPartClassName('hue')}
-                        onClick={this.onHueChange}>
+                        onPositionChange={this.onHueChange}>
                         <div
                             className={cx.getPartClassName('hue-anchor')}
                             style={{
                                 transform: `translateY(${HUE_HEIGHT * h / 360}px)`
                             }} />
-                    </div>
-                    <div className={cx.getPartClassName('alpha')}>
+                    </DragPanel>
+                    <DragPanel
+                        className={cx.getPartClassName('alpha')}
+                        onPositionChange={this.onAlphaChange}>
                         <div
                             className={cx.getPartClassName('alpha-foreground')}
                             style={{
                                 background: alphaForegroundColor
-                            }}
-                            onClick={this.onAlphaChange}>
+                            }}>
                             <div
                                 className={cx.getPartClassName('alpha-anchor')}
                                 style={{
                                     transform: `translateY(${Math.round(a * HUE_HEIGHT)}px)`
                                 }} />
                         </div>
-                    </div>
+                    </DragPanel>
                 </div>
                 <ul className={cx.getPartClassName('input-panel')}>
                     <li className={cx.getPartClassName('input-box')}>

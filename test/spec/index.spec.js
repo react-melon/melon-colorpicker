@@ -112,37 +112,25 @@ describe('colorpicker', function () {
         // 这里先等展开的动画播完
         setTimeout(() => {
 
-            let saturation = document.querySelector('.ui-color-picker-saturation');
-            let {top, left} = saturation.getBoundingClientRect();
-
             colorpicker.instance().onSaturationChange({
-                currentTarget: saturation,
-                pageX: left,
-                pageY: top
+                x: 0,
+                y: 0
             });
 
             expect(colorpicker.state('h')).toBe(0);
             expect(colorpicker.state('s')).toBe(0);
             expect(colorpicker.state('v')).toBe(1);
 
-            let hue = document.querySelector('.ui-color-picker-hue');
-            let huePosition = hue.getBoundingClientRect();
-
             colorpicker.instance().onHueChange({
-                currentTarget: hue,
-                pageY: huePosition.top + huePosition.height * 2 / 3,
-                pageX: huePosition.left
+                x: 0.5,
+                y: 0.5
             });
 
-            expect(colorpicker.state('h')).toBe(240);
-
-            let alpha = document.querySelector('.ui-color-picker-alpha');
-            let alphaPosition = alpha.getBoundingClientRect();
+            expect(colorpicker.state('h')).toBe(180);
 
             colorpicker.instance().onAlphaChange({
-                currentTarget: alpha,
-                pageY: alphaPosition.top + alphaPosition.height / 2,
-                pageX: alphaPosition.left
+                x: 0.5,
+                y: 0.5
             });
 
             expect(colorpicker.state('a') - 0.5).toBe(0);

@@ -1,24 +1,35 @@
 /**
- * @file webpack 开发配置
+ * @file webpack demo
  * @author leon <ludafa@outlook.com>
  */
 
 const webpack = require('webpack');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-    entry: [
-        './example/index.js'
-    ],
+
+    entry: {
+        main: ['./example/index.js']
+    },
+
+    output: {
+        path: 'public',
+        filename: '[name].[chunkhash].js'
+    },
+
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: ['babel-loader'],
+                loaders: [
+                    'babel'
+                ],
                 exclude: /node_modules/
             },
-            // 处理 stylus
+            {
+                test: /\.json(\?.*)?$/,
+                loader: 'json'
+            },
             {
                 test: /\.styl$/,
                 loader: 'style!css!stylus?paths=node_modules&resolve url&include css'
@@ -30,21 +41,23 @@ const config = {
             }
         ]
     },
-    // stylus loader 中引入 nib 库支持
-    stylus: {
-        use: [require('nib')()]
-    },
-    output: {
-        path: path.join(__dirname, '../example'),
-        publicPath: '/example/',
-        filename: 'bundle.js'
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.css']
-    },
+
     devtool: 'source-map',
+
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
         new HtmlWebpackPlugin({
             title: 'My App',
             filename: 'index.html',
@@ -53,6 +66,5 @@ const config = {
         })
     ]
 };
-
 
 module.exports = config;
