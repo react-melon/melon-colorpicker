@@ -41,11 +41,11 @@ export default class DragPanel extends PureComponent {
     }
 
     onPositionChange(e) {
-        let {pageX, pageY} = e;
+        let {clientX, clientY} = e;
         let {left, top, width, height} = this.position;
 
-        let x = pageX - left;
-        let y = pageY - top;
+        let x = clientX - left;
+        let y = clientY - top;
 
         if (x < 0) {
             x = 0;
