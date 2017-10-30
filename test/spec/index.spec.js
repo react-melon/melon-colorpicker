@@ -7,7 +7,7 @@
 import {mount, shallow} from 'enzyme';
 import React from 'react';
 import ColorPicker from '../../src/index';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
 import './index.styl';
 

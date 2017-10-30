@@ -12,7 +12,7 @@ module.exports = {
     frameworks: ['jasmine'],
 
     files: [
-        'test/spec/**/*.spec.js'
+        'test/index.js'
     ],
 
     browsers: [

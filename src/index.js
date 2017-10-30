@@ -4,7 +4,8 @@
  * @author leon<ludafa@outlook.com>
  */
 
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import InputComponent from 'melon-core/InputComponent';
 import {create} from 'melon-core/classname/cxBuilder';
 import {Motion, spring} from 'react-motion';

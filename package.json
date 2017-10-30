@@ -34,10 +34,15 @@
   "dependencies": {
     "dom-align": "^1.5.3",
     "kolor": "^1.1.9",
-    "melon": ">=0.5.0",
-    "melon-core": ">=0.4.1",
-    "melon-layer": ">=1.0.2",
-    "react-motion": "^0.4.7"
+    "melon": ">=0.6.0-0",
+    "melon-core": ">=0.5.2",
+    "melon-layer": ">=1.1.0",
+    "prop-types": "^15.6.0",
+    "react-motion": "^0.5.2"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "babel-istanbul": "^0.11.0",
@@ -53,7 +58,6 @@
     "babelify": "^7.3.0",
     "coveralls": "^2.11.12",
     "css-loader": "^0.24.0",
-    "enzyme": "^2.6.0",
     "esdoc": "^0.4.8",
     "esdoc-es7-plugin": "0.0.3",
     "fecs": "^0.8.6",
@@ -62,10 +66,11 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "html-webpack-plugin": "^2.30.1",
-    "jasmine": "^2.4.1",
-    "jsdom": "^9.8.3",
+    "jasmine-core": "^2.8.0",
     "json-loader": "^0.5.4",
     "karma": "^1.2.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
@@ -75,9 +80,8 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "nib": "^1.1.2",
-    "react": "^15.4.1",
-    "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "rimraf": "^2.6.1",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
@@ -86,43 +90,5 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.15.0",
     "webpack-hot-middleware": "^2.12.2"
-  },
-  "babel": {
-    "env": {
-      "dev": {
-        "presets": [
-          "es2015",
-          "stage-2",
-          "react"
-        ]
-      },
-      "test": {
-        "presets": [
-          "es2015",
-          "stage-2",
-          "react"
-        ],
-        "plugins": [
-          "istanbul"
-        ]
-      },
-      "production": {
-        "presets": [
-          [
-            "es2015",
-            {
-              "loose": true,
-              "modules": "umd"
-            }
-          ],
-          "stage-2",
-          "react"
-        ],
-        "plugins": [
-          "transform-es3-property-literals",
-          "transform-es3-member-expression-literals"
-        ]
-      }
-    }
   }
 }
