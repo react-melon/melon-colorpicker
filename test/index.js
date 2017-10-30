@@ -13,5 +13,5 @@ configure({
 const specContext = require.context('./spec', true)
 const specs = specContext
     .keys()
-    .filter(spec => !/\.js$/.test(spec))
+    .filter(spec => !1 && !/\.js$/.test(spec))
     .forEach(specContext)

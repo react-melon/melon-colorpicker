@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import InputComponent from 'melon-core/InputComponent';
 import {create} from 'melon-core/classname/cxBuilder';
 import {Motion, spring} from 'react-motion';
-import Layer from 'melon-layer';
+import Layer from 'melon/Layer';
 import Icon from 'melon/Icon';
 import Button from 'melon/Button';
 import align from 'dom-align';
@@ -517,8 +517,9 @@ export default class ColorPicker extends InputComponent {
                 </label>
                 <Layer
                     open={open || closing}
-                    render={this.renderLayer}
-                    onClickAway={this.onClickAway} />
+                    onClickAway={this.onClickAway}>
+                    {this.renderLayer()}
+                </Layer>
             </div>
         );
 

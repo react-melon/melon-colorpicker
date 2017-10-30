@@ -34,9 +34,8 @@
   "dependencies": {
     "dom-align": "^1.5.3",
     "kolor": "^1.1.9",
-    "melon": ">=0.6.0-0",
+    "melon": ">=0.6.0-alpha.3",
     "melon-core": ">=0.5.2",
-    "melon-layer": ">=1.1.0",
     "prop-types": "^15.6.0",
     "react-motion": "^0.5.2"
   },
