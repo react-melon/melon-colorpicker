@@ -7,3 +7,7 @@ node_modules
 test
 docs
 esdoc.json
+.coveralls.yml
+.gitignore
+bower.json
+.babelrc
